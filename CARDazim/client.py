@@ -1,6 +1,7 @@
 import argparse
 import sys
 import socket
+import time
 
 
 ###########################################################
@@ -8,10 +9,19 @@ import socket
 ###########################################################
 
 
-def send_data(server_ip, server_port, data):
+def send_data(server_ip: str, server_port: int, data: str) -> None:
+    """
+    Connect to server and send him a message
+    :param server_ip: the ip of the server
+    :param server_port: the port of the server
+    :param data: the message we want to send
+    :return: None
+    """
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((server_ip, server_port))
+
     client.send(data.encode())
+
     client.close()
 
 

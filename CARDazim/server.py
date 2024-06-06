@@ -1,21 +1,41 @@
 import argparse
 import sys
 import socket
+import threading
 
 
-def run_server(server_ip, server_port):
+"""
+:param server_ip: the IP of the server
+:param server_port: the port
+:return: None
+"""
+
+
+def run_server(server_ip: str, server_port: int) -> None:
+    """ create the server """
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((server_ip, server_port))
     server.listen(5)
+    """ 
+    The server is up and running
+    
+    Now handel clients
+    """
     while True:
         conn, addr = server.accept()
-        from_client = ''
-        while True:
-            data = conn.recv(4096)
-            if not data: break
-            from_client += data.decode('utf8')
-            print(f'Received data: {from_client}')
-        conn.close()
+        t = threading.Thread(target=handel_client, args=[conn, addr])
+        t.start()
+        print("client connected")
+
+
+def handel_client(conn: socket, addr: socket) -> None:
+    from_client = ''
+    while True:
+        data = conn.recv(4096)
+        if not data: break
+        from_client += data.decode('utf8')
+        print(f'Received data: {from_client}')
+    conn.close()
 
 
 def get_args():
