@@ -1,6 +1,8 @@
 import socket
 
 
+close_exception = Exception("connection closed")
+
 class Connection:
     def __init__(self, connection: socket.socket = None, host: str = None, port: int = -1):
         self.conn = connection
@@ -21,12 +23,11 @@ class Connection:
     def send_message(self, message: bytes):
         self.conn.send(message)
 
-    def receive_message(self) -> str:
+    def receive_message(self) -> bytes:
         data = self.conn.recv(4096)
         if not data:
-            raise "connection closed"
-        from_connection = data.decode('utf8')
-        return from_connection
+            raise close_exception
+        return data
 
     def connect(self, host: str, port: int):
         self.conn.connect((host, port))

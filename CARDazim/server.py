@@ -1,7 +1,8 @@
 import argparse
 import sys
-import socket
 import threading
+from Listener import Listener
+from Connection import Connection
 
 
 """
@@ -13,30 +14,24 @@ import threading
 
 def run_server(server_ip: str, server_port: int) -> None:
     """ create the server """
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((server_ip, server_port))
-    server.listen(5)
-    """ 
-    The server is up and running
-    
-    Now handel clients
-    """
-    while True:
-        conn, addr = server.accept()
-        t = threading.Thread(target=handel_client, args=[conn, addr])
-        t.start()
-        print("client connected")
+    with Listener(server_ip, server_port) as listener:
+
+        while True:
+            conn = listener.accept()
+            t = threading.Thread(target=handel_client, args=[conn])
+            t.start()
+            print("client connected")
 
 
-def handel_client(conn: socket, addr: socket) -> None:
-    from_client = ''
-    while True:
-        data = conn.recv(4096)
-        if not data:
-            break
-        from_client += data.decode('utf8')
-        print(f'Received data: {from_client}')
-    conn.close()
+def handel_client(connection: Connection) -> None:
+    with connection as conn:
+        while True:
+            try:
+                data = conn.receive_message()
+            except:
+                break
+            data = data.decode('utf8')
+            print(f'Received data: {data}')
 
 
 def get_args():
