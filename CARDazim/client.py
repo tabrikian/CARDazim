@@ -1,12 +1,6 @@
 import argparse
 import sys
-import socket
-import time
-
-
-###########################################################
-####################### YOUR CODE #########################
-###########################################################
+from Connection import Connection
 
 
 def send_data(server_ip: str, server_port: int, data: str) -> None:
@@ -17,17 +11,8 @@ def send_data(server_ip: str, server_port: int, data: str) -> None:
     :param data: the message we want to send
     :return: None
     """
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((server_ip, server_port))
-
-    client.send(data.encode())
-
-    client.close()
-
-
-###########################################################
-##################### END OF YOUR CODE ####################
-###########################################################
+    with Connection(host=server_ip, port=server_port) as connection:
+        connection.send_message(data.encode())
 
 
 def get_args():
@@ -42,9 +27,9 @@ def get_args():
 
 
 def main():
-    '''
+    """
     Implementation of CLI and sending data to server.
-    '''
+    """
     args = get_args()
     try:
         print("sending messages")

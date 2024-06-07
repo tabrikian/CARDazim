@@ -32,7 +32,8 @@ def handel_client(conn: socket, addr: socket) -> None:
     from_client = ''
     while True:
         data = conn.recv(4096)
-        if not data: break
+        if not data:
+            break
         from_client += data.decode('utf8')
         print(f'Received data: {from_client}')
     conn.close()

@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add server client">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CARDazim/Connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CARDazim/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/CARDazim/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CARDazim/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/CARDazim/server.py" afterDir="false" />
     </list>
