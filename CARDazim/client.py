@@ -1,9 +1,10 @@
 import argparse
 import sys
 from Connection import Connection
+from Card import Card
 
 
-def send_data(server_ip: str, server_port: int, data: str) -> None:
+def send_data(server_ip: str, server_port: int, data: bytes) -> None:
     """
     Connect to server and send him a message
     :param server_ip: the ip of the server
@@ -12,17 +13,26 @@ def send_data(server_ip: str, server_port: int, data: str) -> None:
     :return: None
     """
     with Connection(host=server_ip, port=server_port) as connection:
-        connection.send_message(data.encode())
+        connection.send_message(data)
 
 
 def get_args():
     parser = argparse.ArgumentParser(description='Send data to server.')
-    parser.add_argument('server_ip', type=str,
-                        help='the server\'s ip')
-    parser.add_argument('server_port', type=int,
-                        help='the server\'s port')
-    parser.add_argument('data', type=str,
-                        help='the data')
+    parser.add_argument('IP', type=str,
+                        help='IP of the server')
+    parser.add_argument('port', type=int,
+                        help='port of connection')
+
+    parser.add_argument('name', type=str,
+                        help='name of card')
+    parser.add_argument('creator', type=str,
+                        help='name of the card\'s creator')
+    parser.add_argument('path', type=str,
+                        help='path to the image')
+    parser.add_argument('riddle', type=str,
+                        help='create a riddle to the server')
+    parser.add_argument('solution', type=str,
+                        help='solution of the riddle')
     return parser.parse_args()
 
 
@@ -32,8 +42,12 @@ def main():
     """
     args = get_args()
     try:
-        print("sending messages")
-        send_data(args.server_ip, args.server_port, args.data)
+        print("creates card")
+        card = Card.create_from_path(args.name, args.creator, args.path, args.riddle, args.solution)
+        print("encrypting")
+        card.encrypt(args.solution)
+        print("sending")
+        send_data(args.IP, args.port, card.serialize())
         print('Done.')
     except Exception as error:
         print(f'ERROR: {error}')

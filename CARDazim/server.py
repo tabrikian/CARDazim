@@ -3,6 +3,7 @@ import sys
 import threading
 from Listener import Listener
 from Connection import Connection
+from Card import Card
 
 
 """
@@ -30,8 +31,8 @@ def handel_client(connection: Connection) -> None:
                 data = conn.receive_message()
             except:
                 break
-            data = data.decode('utf8')
-            print(f'Received data: {data}')
+            card = Card.deserialize(data)
+            print(f'Received card: {card}')
 
 
 def get_args():
@@ -44,9 +45,9 @@ def get_args():
 
 
 def main():
-    '''
+    """
     Implementation of CLI and sending data to server.
-    '''
+    """
     args = get_args()
     try:
         print("server is ready")

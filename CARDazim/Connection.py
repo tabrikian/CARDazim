@@ -21,10 +21,15 @@ class Connection:
         return "<Connection from " + socket.gethostname() + " to " + self.conn.getpeername() + ">"
 
     def send_message(self, message: bytes):
-        self.conn.send(message)
+        len_mess = len(message)
+        self.conn.send(len_mess.to_bytes(32, "big") + message)
 
     def receive_message(self) -> bytes:
-        data = self.conn.recv(4096)
+        len_mess = int.from_bytes(self.conn.recv(32), "big")
+        data = int(1).to_bytes(1, "big")
+        while len_mess > len(data):
+            data += self.conn.recv(min(len_mess - len(data), 4096))
+        data = data[1:]
         if not data:
             raise close_exception
         return data

@@ -1,9 +1,8 @@
 from CryptImage import CryptImage
-from PIL import Image
 
 
 class Card:
-    def __init__(self, name: str, creator: str, image: CryptImage, riddle: str, solution: str = None):
+    def __init__(self, name: str, creator: str, image: CryptImage, riddle: str, solution: str = None) -> None:
         self.name = name
         self.creator = creator
         self.image = image
@@ -25,15 +24,7 @@ class Card:
         return Card(name, creator, img, riddle, solution)
 
     def serialize(self) -> bytes:
-        img = self.image.image.load()
-        image_data = int(1).to_bytes(1, "big")
-        for i in range(self.image.height):
-            print(i, self.image.height)
-            for j in range(self.image.length):
-                pix = img[j, i]
-                for c in range(3):
-                    image_data += pix[c].to_bytes(1, "big")
-        image_data = image_data[1:]
+        image_data = CryptImage.image_to_bytes(self.image)
 
         key_hash = self.image.key_hash
         if key_hash is None:
@@ -44,8 +35,14 @@ class Card:
                 self.image.length.to_bytes(4, "big") + self.image.height.to_bytes(4, "big") + image_data +
                 key_hash + len(self.riddle).to_bytes(4, "big") + self.riddle.encode())
 
+    def encrypt(self, key: str) -> None:
+        self.image.encrypt(key)
+
+    def decrypt(self, key: str) -> bool:
+        return self.image.decrypt(key)
+
     @staticmethod
-    def deserialize(data: bytes):
+    def deserialize(data: bytes) -> "Card":
         len_name = int.from_bytes(data[:4], "big")
         data = data[4:]
         name = data[:len_name].decode()
@@ -60,50 +57,26 @@ class Card:
         data = data[4:]
         height = int.from_bytes(data[:4], "big")
         data = data[4:]
-        image_data = data[:length*height*3]
-        data = data[length*height*3:]
-        print(len(data))
-        print(length, height)
 
-        counter = 0
-        image_rgb = []
-        for i in range(length):
-            for j in range(height):
-                color = [0, 0, 0]
-                for c in range(3):
-                    color[c] = image_data[counter]
-                    counter += 1
-                image_rgb.append(tuple(color))
-        image_rgb = tuple(image_rgb)
-
-        image = Image.new("RGB", (length, height))
-        image.putdata(image_rgb)
-
-        hash_key = data[:32]
-        data = data[32:]
+        image_data = data[:length * height * 3 + 32]
+        data = data[length * height * 3 + 32:]
 
         len_riddle = int.from_bytes(data[:4], "big")
         data = data[4:]
         riddle = data[:len_riddle].decode()
 
-        return Card(name, creator, CryptImage(image, hash_key), riddle)
+        return Card(name, creator, CryptImage.bytes_to_image(image_data, length, height), riddle)
 
 
-if __name__ == "__main__":
+def test():
     solution = "HA HA!"
-    card = Card.create_from_path("card", "Omri", "/home/user/Pictures/panda.jpg", "what?", solution)
+    card = Card.create_from_path("card", "Omri", "/home/user/Pictures/panda.jpg",
+                                 "what?", solution)
     card.image.encrypt(card.solution)
+    card.image.image.show()
     data = card.serialize()
     card2 = Card.deserialize(data)
-    if True:
+    if card2.image.decrypt(solution):
         card2.solution = solution
-    print()
-    print("origin:")
-    print()
-    print(card)
-    print()
-    print("fake:")
-    print()
-    print(card2)
     assert (repr(card) == repr(card2))
     card2.image.image.show()  # will show the same image as in path
