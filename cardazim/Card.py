@@ -79,4 +79,3 @@ def test():
     if card2.image.decrypt(solution):
         card2.solution = solution
     assert (repr(card) == repr(card2))
-    card2.image.image.show()  # will show the same image as in path
