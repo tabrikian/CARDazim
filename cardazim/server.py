@@ -4,6 +4,7 @@ import threading
 from Listener import Listener
 from Connection import Connection
 from Card import Card
+from card_manager import CardManager
 
 
 """
@@ -25,14 +26,19 @@ def run_server(server_ip: str, server_port: int) -> None:
 
 
 def handel_client(connection: Connection) -> None:
+    global saver, path
+    saver = CardManager()
     with connection as conn:
         while True:
             try:
                 data = conn.receive_message()
-            except:
+            except Exception as error:
+                print(f'ERROR: {error}')
                 break
             card = Card.deserialize(data)
             print(f'Received card: {card}')
+            id = saver.save(card, path)
+            print(f'Card saved in {path}/{id}')
 
 
 def get_args():
@@ -41,6 +47,8 @@ def get_args():
                         help='the server\'s ip')
     parser.add_argument('server_port', type=int,
                         help='the server\'s port')
+    parser.add_argument('path', type=str,
+                        help='where to save the cards?')
     return parser.parse_args()
 
 
@@ -48,7 +56,10 @@ def main():
     """
     Implementation of CLI and sending data to server.
     """
+    global saver, path
+    saver = CardManager()
     args = get_args()
+    path = args.path
     try:
         print("server is ready")
         run_server(args.server_ip, args.server_port)
@@ -59,4 +70,5 @@ def main():
 
 
 if __name__ == '__main__':
+    global saver, path
     sys.exit(main())
