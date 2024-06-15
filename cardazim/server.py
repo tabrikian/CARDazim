@@ -27,18 +27,15 @@ def run_server(server_ip: str, server_port: int) -> None:
 
 def handel_client(connection: Connection) -> None:
     global saver, path
-    saver = CardManager()
     with connection as conn:
-        while True:
-            try:
-                data = conn.receive_message()
-            except Exception as error:
-                print(f'ERROR: {error}')
-                break
-            card = Card.deserialize(data)
-            print(f'Received card: {card}')
-            id = saver.save(card, path)
-            print(f'Card saved in {path}/{id}')
+        try:
+            data = conn.receive_message()
+        except Exception as error:
+            print(f'ERROR: {error}')
+        card = Card.deserialize(data)
+        print(f'Received card: {card}')
+        id = saver.save(card)
+        print(f'Card saved in {path}/{id}')
 
 
 def get_args():
@@ -56,10 +53,10 @@ def main():
     """
     Implementation of CLI and sending data to server.
     """
-    global saver, path
-    saver = CardManager()
+    global path, saver
     args = get_args()
     path = args.path
+    saver = CardManager(path)
     try:
         print("server is ready")
         run_server(args.server_ip, args.server_port)
