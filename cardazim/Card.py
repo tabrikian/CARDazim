@@ -5,7 +5,7 @@ class Card:
     def __init__(self, name: str, creator: str, image: CryptImage, riddle: str, solution: str = None) -> None:
         self.name = name
         self.creator = creator
-        self.image = image
+        self.image: CryptImage = image
         self.riddle = riddle
         self.solution = solution
 

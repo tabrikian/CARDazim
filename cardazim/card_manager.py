@@ -43,6 +43,7 @@ class CardManager(DataBase):
 
         card.image.image.save(f"{card_path}/image.jpg")
         self.paths_by_id[id] = f"{card_path}"
+        return id
 
     def get_identifier(self, card: Card) -> str:
         return card.creator + "--" + card.name

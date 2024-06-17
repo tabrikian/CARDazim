@@ -4,6 +4,7 @@ import threading
 from Listener import Listener
 from Connection import Connection
 from Card import Card
+from saver import Saver
 from card_manager import CardManager
 
 
@@ -34,8 +35,8 @@ def handel_client(connection: Connection) -> None:
             print(f'ERROR: {error}')
         card = Card.deserialize(data)
         print(f'Received card: {card}')
-        id = saver.save(card)
-        print(f'Card saved in {path}/{id}')
+        saver.save(card)
+        print(f'creators are {saver.get_creators()}')
 
 
 def get_args():
@@ -56,7 +57,7 @@ def main():
     global path, saver
     args = get_args()
     path = args.path
-    saver = CardManager(path)
+    saver = Saver(path)
     try:
         print("server is ready")
         run_server(args.server_ip, args.server_port)
