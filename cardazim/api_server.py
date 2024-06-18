@@ -2,7 +2,7 @@ import argparse
 import sys
 
 from flask import Flask, request, jsonify
-from card_manager import CardManager
+from saver import Saver
 
 # instance of flask application
 app = Flask(__name__)
@@ -40,7 +40,7 @@ def get_card(creator: str, card_name: str):
 
 
 @app.route('/creators/<creator>/cards/<card_name>/image.jpg', methods=['GET'])
-def get_card(creator: str, card_name: str):
+def get_image(creator: str, card_name: str):
     if request.method == 'GET':
         data = saver.load(saver.get_id_by_name(card_name, creator)).image.image
         return jsonify(data)
@@ -54,7 +54,7 @@ def find_card(find=""):
 
 
 @app.route('/creators/<card_id>/solve', methods=['POST'])
-def get_card(card_id: str, solution: str):
+def solve_card(card_id: str, solution: str):
     if request.method == 'POST':
         creator, card_name = saver.get_name_by_id()
         card = saver.load(card_id)
@@ -83,7 +83,7 @@ def main():
     global path, saver
     args = get_args()
     path = args.path
-    saver = CardManager(path)
+    saver = Saver(path)
     run_server(args.server_ip, args.server_port)
 
 

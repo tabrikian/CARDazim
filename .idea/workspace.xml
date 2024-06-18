@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add testing">
-      <change afterPath="$PROJECT_DIR$/cardazim/api_server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cardazim/saver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add api and mongodb">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/cardazim/Card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/card_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/cardazim/card_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Omri/cards.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Omri/panda/image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Omri/panda/metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Omri/panda2/image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Omri/panda2/metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Tabrikian/cards.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Tabrikian/panda/image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/Tabrikian/panda/metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/data/creators.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cardazim/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/cardazim/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cardazim/api_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/cardazim/api_server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +60,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.server">
+  <component name="RunManager" selected="Python.api_server">
     <configuration name="api_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CARDazim" />
       <option name="ENV_FILES" value="" />
@@ -89,7 +75,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cardazim/api_server.py" />
-      <option name="PARAMETERS" value="127.0.0.1 12345 &quot;./data&quot;" />
+      <option name="PARAMETERS" value="127.0.0.1 12345 &quot;mongodb+srv://omri:Omrirmo1@cluster0.auqkyxp.mongodb.net/?retryWrites=true&amp;w=majority&amp;appName=Cluster0&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -185,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718029573018</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add api and mongodb">
+      <option name="closed" value="true" />
+      <created>1718650064667</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718650064667</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +202,7 @@
     <MESSAGE value="add Card and started CryptImage (not fully complete)" />
     <MESSAGE value="done CryptImage, and update client and server" />
     <MESSAGE value="add testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="add testing" />
+    <MESSAGE value="add api and mongodb" />
+    <option name="LAST_COMMIT_MESSAGE" value="add api and mongodb" />
   </component>
 </project>
