@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        CARDazim
+    </title>
+    <h1>
+        {{title}}
+    </h1>
+</head>
+    <body>
+        <form method="get">
+             <input type="text" name="creator" placeholder="Enter a creator"/>
+             <input type="submit" value="unsolved cards" formaction="/creators/creator/cards/solved"/>
+             <input type="submit" value="solved cards"  formaction="/creators/creator/cards/solved"/>
+             <button type="reset">delete</button>
+        </form>
+
+        <form method="get">
+             <input type="text" name="find" placeholder="Enter a card id (name--creator)"/>
+             <input type="submit" value="find"  formaction="/cards/find"/>
+             <button type="reset">delete</button>
+        </form>
+
+        <form method="get">
+             <input type="text" name="card_id" placeholder="Enter a card id (name--creator)"/>
+             <input type="text" name="solution" placeholder="Enter a solution"/>
+             <input type="submit" value="solve"  formaction="/cards/card_id/solve"/>
+             <button type="reset">delete</button>
+        </form>
+
+        <form method="get">
+             <input type="text" name="creator" placeholder="Enter a creator name"/>
+             <input type="text" name="card-name" placeholder="Enter a card name"/>
+             <input type="submit" value="get card"  formaction="/creators/creator/cards/card-name"/>
+             <input type="submit" value="get image"  formaction="/creators/creator/cards/card-name/image.jpg"/>
+             <button type="reset">delete</button>
+        </form>
+
+        <form action="/creators">
+             <button type="submit">show creators</button>
+        </form>
+    </body>
+</html>
