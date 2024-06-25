@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add api and mongodb">
-      <change afterPath="$PROJECT_DIR$/cardazim/start-server.sh" afterDir="false" />
+    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add start files">
+      <change afterPath="$PROJECT_DIR$/cardazim/templates/show_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +60,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.api_server">
+  <component name="RunManager" selected="Python.server">
     <configuration name="api_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CARDazim" />
       <option name="ENV_FILES" value="" />
@@ -187,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718713491373</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add start files">
+      <option name="closed" value="true" />
+      <created>1718727214700</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718727214700</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +219,7 @@
     <MESSAGE value="done CryptImage, and update client and server" />
     <MESSAGE value="add testing" />
     <MESSAGE value="add api and mongodb" />
-    <option name="LAST_COMMIT_MESSAGE" value="add api and mongodb" />
+    <MESSAGE value="add start files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add start files" />
   </component>
 </project>
