@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add start files">
-      <change afterPath="$PROJECT_DIR$/cardazim/templates/show_list.html" afterDir="false" />
+    <list default="true" id="dc442d5c-1620-4e86-9832-acfe5d3cfa86" name="Changes" comment="add html template">
+      <change afterPath="$PROJECT_DIR$/cardazim/templates/image.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cardazim/api_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/cardazim/api_server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718727214700</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add html template">
+      <option name="closed" value="true" />
+      <created>1719321407699</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719321407699</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,6 +229,7 @@
     <MESSAGE value="add testing" />
     <MESSAGE value="add api and mongodb" />
     <MESSAGE value="add start files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add start files" />
+    <MESSAGE value="add html template" />
+    <option name="LAST_COMMIT_MESSAGE" value="add html template" />
   </component>
 </project>
